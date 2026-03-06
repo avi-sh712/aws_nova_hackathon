@@ -1,0 +1,66 @@
+# =============================================
+# .gitignore — Diagram-to-Terraform Project
+# =============================================
+
+# ---------- Environment & Secrets ----------
+.env
+.env.local
+.env.production
+.env.*.local
+*.pem
+*.key
+
+# ---------- Python / Backend ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# ---------- Node / Frontend ----------
+node_modules/
+.next/
+out/
+.vercel
+
+# ---------- Terraform ----------
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# ---------- Docker ----------
+docker-compose.override.yml
+
+# ---------- IDE ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------- Temp / OS ----------
+tmp/
+temp/
+.cache/

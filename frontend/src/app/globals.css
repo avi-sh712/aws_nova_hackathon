@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Amazon Nova Theme – Global Styles                                  */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --nova-blue: #1a73e8;
+  --nova-blue-light: #4da3ff;
+  --nova-pink: #e91e8c;
+  --nova-pink-light: #ff6eb4;
+  --nova-purple: #7b2ff7;
+  --nova-purple-light: #a855f7;
+  --nova-black: #0a0a0f;
+  --nova-dark-surface: #12121a;
+  --nova-dark-card: #1a1a2e;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--nova-black);
+  color: #f3f4f6;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ------------------------------------------------------------------ */
+/* Glassmorphism Card                                                 */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .glass-card {
+    @apply rounded-2xl border border-white/10 bg-nova-dark-card/60 p-6 backdrop-blur-xl;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+  .glass-card-hover:hover {
+    @apply border-nova-purple/40;
+    box-shadow:
+      0 8px 32px rgba(123, 47, 247, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-nova-gradient bg-clip-text text-transparent;
+    background-size: 200% 200%;
+  }
+
+  /* Animated gradient text */
+  .gradient-text-animated {
+    @apply gradient-text animate-gradient-shift;
+  }
+
+  /* Nova button */
+  .btn-nova {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, var(--nova-blue), var(--nova-purple));
+  }
+  .btn-nova:hover {
+    box-shadow:
+      0 0 20px rgba(123, 47, 247, 0.4),
+      0 0 40px rgba(26, 115, 232, 0.2);
+    transform: translateY(-1px);
+  }
+  .btn-nova:active {
+    transform: translateY(0);
+  }
+  .btn-nova:disabled {
+    @apply cursor-not-allowed opacity-50;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Secondary button */
+  .btn-nova-outline {
+    @apply rounded-xl border border-nova-purple/40 bg-transparent px-6 py-3 font-semibold text-nova-purple-light transition-all duration-300;
+  }
+  .btn-nova-outline:hover {
+    @apply border-nova-purple bg-nova-purple/10;
+  }
+
+  /* Pink accent button */
+  .btn-nova-pink {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, var(--nova-pink), var(--nova-purple));
+  }
+  .btn-nova-pink:hover {
+    box-shadow:
+      0 0 20px rgba(233, 30, 140, 0.4),
+      0 0 40px rgba(123, 47, 247, 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* Upload dropzone */
+  .dropzone {
+    @apply relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-nova-purple/30 bg-nova-dark-card/40 p-12 transition-all duration-300;
+  }
+  .dropzone:hover,
+  .dropzone-active {
+    @apply border-nova-purple/60 bg-nova-purple/5;
+    box-shadow: inset 0 0 60px rgba(123, 47, 247, 0.05);
+  }
+
+  /* Code block wrapper */
+  .code-block {
+    @apply overflow-auto rounded-xl border border-white/10 bg-[#0d1117] p-4;
+    max-height: 500px;
+  }
+
+  /* Step indicator */
+  .step-indicator {
+    @apply flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white;
+  }
+  .step-indicator-active {
+    @apply step-indicator;
+    background: linear-gradient(135deg, var(--nova-blue), var(--nova-purple));
+    box-shadow: 0 0 16px rgba(123, 47, 247, 0.4);
+  }
+  .step-indicator-done {
+    @apply step-indicator bg-green-600;
+  }
+  .step-indicator-pending {
+    @apply step-indicator bg-nova-gray-600/50;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Background orbs animation                                          */
+/* ------------------------------------------------------------------ */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-orb-blue {
+  width: 600px;
+  height: 600px;
+  background: var(--nova-blue);
+  top: -200px;
+  left: -200px;
+  animation: float-orb 20s ease-in-out infinite;
+}
+.bg-orb-purple {
+  width: 500px;
+  height: 500px;
+  background: var(--nova-purple);
+  bottom: -150px;
+  right: -100px;
+  animation: float-orb 25s ease-in-out infinite reverse;
+}
+.bg-orb-pink {
+  width: 400px;
+  height: 400px;
+  background: var(--nova-pink);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float-orb 18s ease-in-out infinite 5s;
+}
+
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  75% {
+    transform: translate(10px, 30px) scale(1.02);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Custom scrollbar                                                   */
+/* ------------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--nova-dark-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--nova-purple);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nova-purple-light);
+}
